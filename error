@@ -1,0 +1,30 @@
+make error:
+
+[root@localhost cpuminer-multi]# make
+make  all-recursive
+make[1]: Entering directory `/tmp/cpuminer-multi'
+Making all in compat
+make[2]: Entering directory `/tmp/cpuminer-multi/compat'
+make[3]: Entering directory `/tmp/cpuminer-multi/compat'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/tmp/cpuminer-multi/compat'
+make[2]: Leaving directory `/tmp/cpuminer-multi/compat'
+make[2]: Entering directory `/tmp/cpuminer-multi'
+if gcc -std=gnu99 -DHAVE_CONFIG_H -I. -I. -I.  -pthread    -Ofast -flto -fuse-linker-plugin -funroll-loops -fvariable-expansion-in-unroller -ftree-loop-if-convert-stores -fmerge-all-constants -fbranch-target-load-optimize2 -fsched2-use-superblocks -falign-loops=16 -falign-functions=16 -falign-jumps=16  -maes   -MT minerd-cpu-miner.o -MD -MP -MF ".deps/minerd-cpu-miner.Tpo" \
+	  -c -o minerd-cpu-miner.o `test -f 'cpu-miner.c' || echo './'`cpu-miner.c; \
+	then mv ".deps/minerd-cpu-miner.Tpo" ".deps/minerd-cpu-miner.Po"; \
+	else rm -f ".deps/minerd-cpu-miner.Tpo"; exit 1; \
+	fi
+cpu-miner.c: In function ‘miner_thread’:
+cpu-miner.c:1063:139: error: ‘MAP_HUGETLB’ undeclared (first use in this function)
+   persistentctx = (struct cryptonight_ctx *)mmap(0, sizeof(struct cryptonight_ctx), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, 0, 0);
+                                                                                                                                           ^
+cpu-miner.c:1063:139: note: each undeclared identifier is reported only once for each function it appears in
+cpu-miner.c:1065:88: error: ‘MADV_HUGEPAGE’ undeclared (first use in this function)
+   madvise(persistentctx, sizeof(struct cryptonight_ctx), MADV_RANDOM | MADV_WILLNEED | MADV_HUGEPAGE);
+                                                                                        ^
+make[2]: *** [minerd-cpu-miner.o] Error 1
+make[2]: Leaving directory `/tmp/cpuminer-multi'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/tmp/cpuminer-multi'
+make: *** [all] Error 2
