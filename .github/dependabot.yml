@@ -1,1 +1,9 @@
-1
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "02:00"
+      timezone: "Asia/Shanghai"  # 设置为中国时区
+    open-pull-requests-limit: 5
