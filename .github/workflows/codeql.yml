@@ -7,6 +7,7 @@ on:
     branches: [ "main" ]
   schedule:
     - cron: '0 2 * * 1'  # 每周一凌晨2点
+  workflow_dispatch:
 
 jobs:
   analyze:
